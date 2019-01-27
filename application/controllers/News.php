@@ -17,7 +17,7 @@ class News extends CI_Controller {
 			$row->post =  $this->Site_model->format_post($row->post);
 		}
 		$config['base_url'] = base_url().'news';
-		$config['total_rows'] = $this->Site_model->count();
+		$config['total_rows'] = $this->Site_model->count_news();
 		$config['per_page'] = $this->rows_per_page;
 		$config['use_page_numbers'] = TRUE;
 		$config['next_link'] = 'STARSZE WPISY';

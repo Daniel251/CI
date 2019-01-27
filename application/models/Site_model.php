@@ -13,7 +13,7 @@ class Site_model extends CI_Model {
 		return $this->db->select('title, post, img_name, date')->order_by('date', 'DESC')->get('news', $limit, $offset)->result();
 	}
 
-	public function count()
+	public function count_news()
 	{
 		return $this->db->count_all_results('news');
 	}
@@ -32,13 +32,6 @@ class Site_model extends CI_Model {
         }
         $post = nl2br($post);
         return "$post";            
-	}
-
-	// Concerts
-	public function get_concerts($order)
-	{
-		$query = $this->db->select('date, club, city')->where('DATE(NOW()) <= DATE(date)')->order_by("date $order")->get('concerts');
-		return $query->result();
 	}
 
 	// Videos
