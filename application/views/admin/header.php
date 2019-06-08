@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/cms.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/cms.css">
     <title>Panel admina</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		          </button>
-		            <img src="<?php echo base_url(); ?>images/nk_logo_50.png"></img>
+		            <img src="<?= base_url() ?>images/nk_logo_50.png"></img>
 		        </div>
 
 		        <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,34 +29,34 @@
 		            <li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zarządzanie Stroną Zespołu<span class="caret"></span></a>
 		              <ul class="dropdown-menu">
-		                <li><a href="<?php echo base_url(); ?>cms/admin/news">Newsy</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/news">Newsy</a></li>
 		                <li role="separator" class="divider"></li>
-		                <li><a href="<?php echo base_url(); ?>cms/admin/concerts">Koncerty</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/concerts">Koncerty</a></li>
 		                <li role="separator" class="divider"></li>
-		                <li><a href="<?php echo base_url(); ?>cms/admin/videos">Filmy</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/videos">Filmy</a></li>
 		              </ul>
 		            </li>
 		          	<li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zarządzanie Sklepem<span class="caret"></span></a>
 		              <ul class="dropdown-menu">
-		                <li><a href="<?php echo base_url(); ?>cms/admin/products">Prodykty</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/products">Prodykty</a></li>
 		                <li role="separator" class="divider"></li>
-		                <li><a href="<?php echo base_url(); ?>cms/admin/orders">Zamówienia</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/orders">Zamówienia</a></li>
 		              </ul>
 		            </li>
 		            <li class="dropdown">
 		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
 		              <ul class="dropdown-menu">
-		                <li><a href="<?php echo base_url(); ?>cms/admin/add_admin">Dodaj</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/add_admin">Dodaj</a></li>
 		                <li role="separator" class="divider"></li>
-		                <li><a href="<?php echo base_url(); ?>cms/admin/remove_admin">Usuń</a></li>
+		                <li><a href="<?= base_url() ?>cms/admin/remove_admin">Usuń</a></li>
 		              </ul>
 		            </li>
-		            <li><a href="<?php echo base_url(); ?>">Strona Zespołu</a></li>
-		            <li><a href="<?php echo base_url(); ?>shop">Sklep</a></li>
+		            <li><a href="<?= base_url() ?>">Strona Zespołu</a></li>
+		            <li><a href="<?= base_url() ?>shop">Sklep</a></li>
 		          </ul>
 		          <ul class="nav navbar-nav navbar-right">
-		          <li class="logout"><a  href="<?php echo base_url(); ?>shop/user/logout">Wyloguj</a></li>
+		          <li class="logout"><a  href="<?= base_url() ?>shop/user/logout">Wyloguj</a></li>
 		          </ul>
 		        </div><!-- /.navbar-collapse -->
 		    </div><!-- /.container-fluid -->

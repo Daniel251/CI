@@ -1,7 +1,7 @@
 <div id='cart'>
 	<div class="row">
 	    <div class='col-sm-12 error center'>
-        <?php echo $this->session->flashdata('errors') ?>
+        <?= $this->session->flashdata('errors') ?>
     </div>
 </div>
 	<?php if( ! $this->cart->contents()): ?>
@@ -28,28 +28,28 @@
                 ?>
 				<tr>
 					<td>
-						<?php echo $row['name']."  ".$size; ?>
-						<span id="size" class='product-size <?php echo $hide ?>'>
-							<?php echo $size; ?>
+						<?= $row['name']."  ".$size ?>
+						<span id="size" class='product-size <?= $hide ?>'>
+							<?= $size ?>
 						</span>
 					</td>
 					<td class="text-center">
-						<a class='remove-from-cart' id='<?php echo $row['rowid']; ?>'>
+						<a class='remove-from-cart' id='<?= $row['rowid'] ?>'>
 							<span class='glyphicon glyphicon-minus'></span>
 						</a>
-						<span class='qty'><?php echo $row['qty']; ?></span>
-						<a class='add-to-cart-plus' id='<?php echo $row['id']; ?>'>
+						<span class='qty'><?= $row['qty'] ?></span>
+						<a class='add-to-cart-plus' id='<?= $row['id'] ?>'>
 							<span class='glyphicon glyphicon-plus'></span>
 						</a>
 					</td>
 					<td class='price'>
-						<?php echo number_format($row['price'], 2); ?>
+						<?= number_format($row['price'], 2) ?>
 					</td>
 					<td class='price'>
-						<?php echo number_format($row['subtotal'], 2); ?>
+						<?= number_format($row['subtotal'], 2) ?>
 					</td>
 				</tr>
-				<?php endforeach; ?>
+				<?php endforeach ?>
 				<tr>
                     <td>
                         Przesyłka: <span id="package-type">( Wybierz typ przesyłki )</span>
@@ -69,13 +69,13 @@
 			<span id='span-sum'>
 	    		Suma: 
 	    		<span id='sum'>
-	    			<?php echo $this->cart->format_number($this->cart->total()); ?>
+	    			<?= $this->cart->format_number($this->cart->total()) ?>
 	    		</span> zł
 			</span>
 		</h2>
 		<div class='clear'></div>
 		<div class="row">
-		        <?php echo form_open('shop/cart/order') ?>
+		        <?= form_open('shop/cart/order') ?>
 			<div id='cart-package-type' class="col-sm-4">
 		        <div class='header'>Wybierz sposób wysyłki:</div>
 	            <input type="radio" id="package-poczta" name="package" value="poczta"> Paczka pocztowa priorytet ( 10 zł )<br>
@@ -86,8 +86,8 @@
 		    </div>
 		       </form>
 		       <span class='hidden' id="total-cart">
-		       		<?php echo $this->cart->format_number($this->cart->total()); ?>
+		       		<?= $this->cart->format_number($this->cart->total()) ?>
 		       </span>
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 </div>

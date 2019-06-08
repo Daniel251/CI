@@ -8,12 +8,12 @@
                 <?php foreach($concerts_incoming as $row): ?>
                      <li class='row'>
                         <div class='date'>
-                            <p><?php echo $row->date; ?></p>
+                            <p><?= $row->date ?></p>
                         </div>
                         <div class='club'>
-                            <p><?php echo $row->club; ?></div>
+                            <p><?= $row->club ?></div>
                         <div class='city'>
-                            <p><?php echo $row->city; ?></p>
+                            <p><?= $row->city ?></p>
                         </div>
                     </li>
                 <?php endforeach ?>
@@ -22,13 +22,13 @@
 
                     <li class='row'>
                         <div class='date'>
-                            <p class='strikeout'><?php echo $row->date; ?></p>
+                            <p class='strikeout'><?= $row->date ?></p>
                         </div>
                         <div class='club'>
-                            <p class='strikeout'><?php echo $row->club; ?></p>
+                            <p class='strikeout'><?= $row->club ?></p>
                         </div>
                         <div class='city'>
-                            <p class='strikeout'><?php echo $row->city; ?></p>
+                            <p class='strikeout'><?= $row->city ?></p>
                         </div>
                     </li>
                 <?php endforeach ?>

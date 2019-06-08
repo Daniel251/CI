@@ -35,7 +35,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             async: false,
-            url: document.location.origin+'/ci/shop/cart/add/'+id+'/'+size,
+            url: document.location.origin+'/shop/cart/add/'+id+'/'+size,
             data: "",
             dataType: "html",
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
                     $("#"+id).notify(
                         "Dodano do koszyka",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
                 else{
@@ -53,7 +53,7 @@ $(document).ready(function(){
                     $("#"+id).notify(
                         "Błąd",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
             }
@@ -71,7 +71,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             async: false,
-            url: document.location.origin+"/ci/shop/cart/remove/"+rowid,
+            url: document.location.origin+"/shop/cart/remove/"+rowid,
             data: "",
             dataType: "html",
 
@@ -98,7 +98,7 @@ $(document).ready(function(){
                     $("#logo").notify(
                         "Błąd",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
             }
@@ -117,7 +117,7 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             async: false,
-            url: document.location.origin+"/ci/shop/cart/add/"+id+"/"+size,
+            url: document.location.origin+"/shop/cart/add/"+id+"/"+size,
             data: "",
             dataType: "html",
 
@@ -133,7 +133,7 @@ $(document).ready(function(){
                     $("#logo").notify(
                         "Błąd",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
             }
