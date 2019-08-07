@@ -1,18 +1,18 @@
 <div id="login">
     <div class='row'>
     	<div class='error center'>
-    		<?= $this->session->flashdata('errors') ?>
+    		<?php echo $this->session->flashdata('errors') ?>
     	</div>
     </div>
     <div class='row'>
         <div class='ok center'>
-            <?= $this->session->flashdata('ok') ?>
+            <?php echo $this->session->flashdata('ok') ?>
         </div>
     </div>
     <div class='header'>
     	Logowanie
     </div>
-    <?= form_open('shop/user/login') ?>
+    <?php echo form_open('shop/user/login') ?>
         <div class="row">
             <div class="heading">Email: </div>
             <div class="value">
@@ -29,7 +29,7 @@
             <button type='submit' class='submit-btn'>Zaloguj</button>
         </div>
         <div class='row forget-pass-link'>
-            <a href="<?= base_url() ?>shop/user/forget_password">Nie pamiętasz hasła?</a>
+            <a href="<?php echo base_url() ?>shop/user/forget_password">Nie pamiętasz hasła?</a>
         </div>
-    <?= form_close() ?>
+    <?php echo form_close() ?>
 </div>

@@ -5,25 +5,25 @@
 		<div class="content">
 			<div class="left">
 				<div class="img">
-					<a href="<?= base_url() ?>images/posts/<?= $row->img_name ?>" data-lightbox="img/posts/'.$img.'.jpg" >
-						<img src="<?= base_url() ?>images/posts/thumbs/<?= $row->img_name ?>" width="100%" height="auto">
+					<a href="<?php echo base_url() ?>images/posts/<?php echo $row->img_name ?>" data-lightbox="img/posts/'.$img.'.jpg" >
+						<img src="<?php echo base_url() ?>images/posts/thumbs/<?php echo $row->img_name ?>" width="100%" height="auto">
 					</a>
 				</div>
 				<div class="postdate">
-					Data dodania: <?= $row->date ?>
+					Data dodania: <?php echo $row->date ?>
 				</div>
 			</div>
 			<div class="right">
 				<div class="posttitle">
-					<?= $row->title ?>
+					<?php echo $row->title ?>
 				</div>
 				<div class="postcontent">
-					<p><?= $row->post ?></p>
+					<p><?php echo $row->post ?></p>
 				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
 	<?php endforeach ?>
 	
-	<div id='pageslink'><?= $page_links ?></div>
+	<div id='pageslink'><?php echo $page_links ?></div>
 	<div class="clear"></div>

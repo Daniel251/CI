@@ -19,8 +19,8 @@
     </div>
 </div>
 
-<script src="<?= base_url() ?>js/main.js"></script>
-<script src="<?= base_url() ?>js/bootstrap.js"></script>
+<script src="<?php echo base_url() ?>js/main.js"></script>
+<script src="<?php echo base_url() ?>js/bootstrap.js"></script>
 <?php if(isset($script)) echo $script ?>
 </body>
 </html>

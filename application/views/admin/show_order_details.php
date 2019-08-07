@@ -1,15 +1,15 @@
 <div id="orders">
 	<div class="row title">
-		Zamówienie nr <?= $order->id ?>
+		Zamówienie nr <?php echo $order->id ?>
 	</div>
 	<div class='row'>
         <div class='col-sm-5 error center'>
-            <?= $this->session->flashdata('errors') ?>
+            <?php echo $this->session->flashdata('errors') ?>
         </div>
     </div>
     <div class='row'>
 	    <div class='col-sm-10 ok'>
-	        <?= $this->session->flashdata('ok') ?>
+	        <?php echo $this->session->flashdata('ok') ?>
 	    </div>
 	</div>
 	<div class="user-details">
@@ -21,43 +21,43 @@
 			Id użytkownika:
 		</div>
 		<div class="row value">
-			<?= $order->user_id ?>
+			<?php echo $order->user_id ?>
 		</div>
 		<div class="row">
 			Email:
 		</div>
 		<div class="row value">
-			<?= $order->email ?>
+			<?php echo $order->email ?>
 		</div>
 		<div class="row">
 			Imię:
 		</div>
 		<div class="row value">
-			<?= $order->name ?>
+			<?php echo $order->name ?>
 		</div>
 		<div class="row">
 			Nazwisko:
 		</div>
 		<div class="row value">
-			<?= $order->surname ?>
+			<?php echo $order->surname ?>
 		</div>
 		<div class="row">
 			Kod pocztowy:
 		</div>
 		<div class="row value">
-			<?= $order->post_code ?>
+			<?php echo $order->post_code ?>
 		</div>
 		<div class="row">
 			Miasto:
 		</div>
 		<div class="row value">
-			<?= $order->city ?>
+			<?php echo $order->city ?>
 		</div>
 		<div class="row">
 			Ulica:
 		</div>
 		<div class="row value">
-			<?= $order->street ?>
+			<?php echo $order->street ?>
 		</div>
 
 	<?php if($order->send_date != NULL): ?>
@@ -66,18 +66,18 @@
 			Data wysyłki:
 		</div>
 		<div class="row value">
-			<?= $order->send_date ?>
+			<?php echo $order->send_date ?>
 		</div>
 		<div class="row">
 			Nr paczki:
 		</div>
 		<div class="row value">
-			<?= $order->parcel_nr ?>
+			<?php echo $order->parcel_nr ?>
 		</div>
 
 	<?php else: ?>
 
-		<?= form_open('cms/admin/send/'.$order->id) ?>
+		<?php echo form_open('cms/admin/send/'.$order->id) ?>
 		<div class="row">
 			Podaj datę wysyłki:
 		</div>
@@ -112,11 +112,11 @@
 		    <?php $sum=0 ?>
 		<?php foreach($products as $row): ?>
 				<tr>
-					<td class='name'><?= $row->name ?></td>
-					<td><?= $size = $row->size == '0' ? '-' : $row->size ?></td>
-					<td><?= $row->quantity ?></td>
-					<td><?= number_format($row->price, 2) ?></td>
-					<td><?= number_format($row->price*$row->quantity, 2) ?></td>
+					<td class='name'><?php echo $row->name ?></td>
+					<td><?php echo $size = $row->size == '0' ? '-' : $row->size ?></td>
+					<td><?php echo $row->quantity ?></td>
+					<td><?php echo number_format($row->price, 2) ?></td>
+					<td><?php echo number_format($row->price*$row->quantity, 2) ?></td>
 				</tr>
 				<?php $sum += $row->price*$row->quantity ?>
 			<?php endforeach ?>
@@ -125,9 +125,9 @@
 			<td></td>
 			<td></td>
 			<td>Suma:</td>
-			<td><?= number_format($sum, 2) ?></td>
+			<td><?php echo number_format($sum, 2) ?></td>
 			</tbody>
 		</table>
-		<a href='<?= base_url() ?>cms/admin/orders' >Wróć</a>
+		<a href='<?php echo base_url() ?>cms/admin/orders' >Wróć</a>
 	</div>
 </div>

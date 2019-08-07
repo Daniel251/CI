@@ -1,4 +1,4 @@
-<?= form_open('cms/admin/add_concert') ?>
+<?php echo form_open('cms/admin/add_concert') ?>
   <div class="form-group">
     <label>Data</label>
     <input type="date" name='date' class="form-control input-date" required>
@@ -12,4 +12,4 @@
       <input type="text" name="city" class="form-control input" placeholder="Miasto" required>
   </div>
   <button type="submit" class="btn btn-warning">Dodaj koncert</button>
-<?= form_close() ?>
+<?php echo form_close() ?>

@@ -19,10 +19,10 @@ foreach ($this->cart->contents() as $items):
      endif;
      ?>
     <tr>
-    <td><?= $items['name'].$size ?>
-    <td><?= $items['qty'] ?></td>
-    <td style="text-align:right"><?= $this->cart->format_number($items['price']) ?></td>
-    <td style="text-align:right">$<?= $this->cart->format_number($items['subtotal']) ?></td>
+    <td><?php echo $items['name'].$size ?>
+    <td><?php echo $items['qty'] ?></td>
+    <td style="text-align:right"><?php echo $this->cart->format_number($items['price']) ?></td>
+    <td style="text-align:right">$<?php echo $this->cart->format_number($items['subtotal']) ?></td>
     </tr>
 
 
@@ -31,7 +31,7 @@ foreach ($this->cart->contents() as $items):
 <tr>
         <td colspan="2"> </td>
         <td class="right"><strong>Total</strong></td>
-        <td class="right">$<?= $this->cart->format_number($this->cart->total()) ?></td>
+        <td class="right">$<?php echo $this->cart->format_number($this->cart->total()) ?></td>
 </tr>
 
 </table>

@@ -1,17 +1,17 @@
 <div class="edit-profile">
 	<div class='row'>
     	<div class='error center'>
-    		<?= $this->session->flashdata('errors') ?>
+    		<?php echo $this->session->flashdata('errors') ?>
     	</div>
     </div>
     <div class='row'>
     	<div class='ok center'>
-    		<?= $this->session->flashdata('ok') ?>
+    		<?php echo $this->session->flashdata('ok') ?>
     	</div>
     </div>
 	<div class='header'>Odzyskiwanie hasła</div>
 	<div class='center'>
-	<?= form_open('shop/user/forget_password') ?>
+	<?php echo form_open('shop/user/forget_password') ?>
 	    <div class='heading'>
 	        Podaj email: 
 	    </div> 

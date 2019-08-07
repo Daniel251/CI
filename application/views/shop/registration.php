@@ -2,12 +2,12 @@
 <?php if($this->session->flashdata('errors')): ?>
     <div class='row'>
         <div class='error center'>
-            <?= $this->session->flashdata('errors') ?>
+            <?php echo $this->session->flashdata('errors') ?>
         </div>
     </div>
 <?php endif ?>
 <div class='header'>Zarejestruj się:</div>
-    <?= form_open('shop/user/register') ?>
+    <?php echo form_open('shop/user/register') ?>
         <div class="label">
             Email: </div> 
         <div class="value ">
@@ -60,5 +60,5 @@
         <div class="center">
             <button type='submit' class='submit-btn'>Zarejestruj się</button>
         </div>
-    <?= form_close() ?>
+    <?php echo form_close() ?>
 </div>

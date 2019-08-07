@@ -1,14 +1,14 @@
 <div class="error">
-    <?= $this->session->flashdata('error') ?>
+    <?php echo $this->session->flashdata('error') ?>
 </div>
-<?= form_open_multipart('cms/admin/edit_video/'.$videos->id) ?>
+<?php echo form_open_multipart('cms/admin/edit_video/'.$videos->id) ?>
 	<div class="form-group">
 		<label>Nazwa filmu</label>
-		<input type="text" name="description" class="form-control input" value='<?= $videos->description ?>' required>
+		<input type="text" name="description" class="form-control input" value='<?php echo $videos->description ?>' required>
 	</div>
 	<div class="form-group">
 		<label>Link</label>
-		<input type="text" name="link" class="form-control input" value='<?= $videos->link ?>' required>
+		<input type="text" name="link" class="form-control input" value='<?php echo $videos->link ?>' required>
 	</div>
 	<div class="form-group">
 		<label>Zdjęcie (zostaw puste jeśli nie zmieniasz)</label>

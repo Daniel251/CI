@@ -4,17 +4,17 @@
 
         <?php foreach($big_player as $row): ?>
             <div id="big_player">
-                <iframe width="960" height="540" src="<?= str_replace("watch?v=","embed/", $row->link) ?>" frameborder="0" allowfullscreen></iframe>
+                <iframe width="960" height="540" src="<?php echo str_replace("watch?v=","embed/", $row->link) ?>" frameborder="0" allowfullscreen></iframe>
             </div>
         <?php endforeach ?>
         <?php foreach($videos as $row): ?>
             <div class="vid">
-                <a class="swipebox-video"  href="<?= $row->link ?>">
+                <a class="swipebox-video"  href="<?php echo $row->link ?>">
                     <div class="dark">
-                        <img src="<?= base_url() ?>images/videos/<?= $row->img_name ?>" alt="image">
+                        <img src="<?php echo base_url() ?>images/videos/<?php echo $row->img_name ?>" alt="image">
                     </div>
                     <div class="video_description">
-                        <?= $row->description ?>
+                        <?php echo $row->description ?>
                     </div>
                 </a>
             </div>
