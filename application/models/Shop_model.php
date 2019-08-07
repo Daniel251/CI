@@ -2,12 +2,6 @@
 
 class Shop_model extends CI_Model {
 
-	public function __construct()
-	{
-		parent::__construct();
-		
-	}
-
 	public function show_menu_categories()
 	{
 		return $this->db->get('categories')->result();
@@ -66,6 +60,3 @@ class Shop_model extends CI_Model {
         return $this->db->like('name', $phrase)->order_by('id', 'DESC')->get('products')->result();
     }
 }
-
-/* End of file Shop_model.php */
-/* Location: ./application/models/Shop_model.php */

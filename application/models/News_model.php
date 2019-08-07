@@ -2,11 +2,6 @@
 
 class News_model extends CI_Model {
 
-	public function __construct()
-	{
-		parent::__construct();
-		
-	}
 	public function get_news($limit, $offset)
 	{
 		return $this->db->select('title, post, img_name, date')->order_by('date', 'DESC')->get('news', $limit, $offset)->result();
@@ -31,9 +26,4 @@ class News_model extends CI_Model {
         $post = nl2br($post);
         return "$post";            
 	}
-
-
 }
-
-/* End of file  */
-/* Location: ./application/models/ */

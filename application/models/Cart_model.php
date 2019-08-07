@@ -145,6 +145,3 @@ class Cart_model extends CI_Model {
 		$this->db->update('orders', $data);
 	}
 }
-
-/* End of file Cart_model.php */
-/* Location: ./application/models/Cart_model.php */

@@ -18,7 +18,7 @@
     <div class="form-group">
         <div class="checkbox">
             <label>
-                <input class='checkbox' id='date-checkbox' name="checkbox" value='1' type="checkbox">Ustaw aktualną date i czas
+                <input class='checkbox' id='date-checkbox' name="checkbox" value='1' type="checkbox">Ustaw aktualną datę i czas
             </label>
         </div>
     </div>

@@ -13,6 +13,3 @@ class Videos_model extends CI_Model {
 	}
 
 }
-
-/* End of file  */
-/* Location: ./application/models/ */

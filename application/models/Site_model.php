@@ -2,11 +2,6 @@
 
 class Site_model extends CI_Model {
 
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	// News
 	public function get_news($limit, $offset)
 	{
@@ -45,6 +40,3 @@ class Site_model extends CI_Model {
 		return $this->db->select('id, img_name, description, link')->order_by('id', 'DESC')->where('big_player', 0)->get('videos')->result();
 	}
 }
-
-/* End of file  */
-/* Location: ./application/models/ */

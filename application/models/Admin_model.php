@@ -2,12 +2,6 @@
 
 class Admin_model extends CI_Model {
 
-	public function __construct()
-	{
-		parent::__construct();
-		
-	}
-
 	public function get_news($id = 0)
 	{
 		if($id == 0) {
@@ -294,6 +288,3 @@ class Admin_model extends CI_Model {
 		$this->db->update('orders');
 	}
 }
-
-/* End of file Admin_model.php */
-/* Location: ./application/models/Admin_model.php */

@@ -55,7 +55,7 @@
                         Przesyłka: <span id="package-type">( Wybierz typ przesyłki )</span>
                     </td>
                     <td class="text-center">
-                        <span class='qty'>1</span>
+                        <span class='qty'></span>
                     <td class='price'>
                         <span class="package-price"></span>
                     </td>
@@ -77,7 +77,7 @@
 		<div class="row">
 		        <?php echo form_open('shop/cart/order') ?>
 			<div id='cart-package-type' class="col-sm-4">
-		        <div class='header'>Wybierz sposób wysyłki:</div>
+		        <div class='header'>Sposób wysyłki:</div>
 	            <input type="radio" id="package-poczta" name="package" value="poczta"> Paczka pocztowa priorytet ( 10 zł )<br>
 	            <input type="radio" id="package-kurier" name="package" value="kurier"> Kurier ( 15 zł )<br>
 		   	</div> 

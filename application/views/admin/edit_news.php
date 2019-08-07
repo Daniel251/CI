@@ -10,7 +10,7 @@
     <div class="form-group">
         <div class="checkbox">
             <label>
-                <input class='checkbox' id='date-checkbox' name="checkbox" value='1' type="checkbox">Ustaw aktualną date i czas
+                <input class='checkbox' id='date-checkbox' name="checkbox" value='1' type="checkbox">Ustaw aktualną datę i czas
             </label>
         </div>
     </div>
@@ -22,5 +22,5 @@
         <label>Zdjęcie - zostaw puste jeśli nie zmieniasz</label>
         <input type="file" name='img'>
     </div>
-    <button type="submit" class="btn btn-warning">Dodaj news</button>
+    <button type="submit" class="btn btn-warning">Aktualizuj</button>
 <?php echo form_close(); ?>
