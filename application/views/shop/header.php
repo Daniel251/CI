@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/lightbox.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/shop.css">
-<link rel='stylesheet' href='<?php echo base_url(); ?>css/lightbox.css'>
-	<title><?= $title; ?></title>
+<link rel="stylesheet" href="<?= base_url() ?>css/bootstrap.css">
+<link rel="stylesheet" href="<?= base_url() ?>css/lightbox.css">
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/shop.css">
+<link rel='stylesheet' href='<?= base_url() ?>css/lightbox.css'>
+	<title><?= $title ?></title>
 </head>
 <body>
 
@@ -28,8 +28,8 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="<?php echo base_url(); ?>shop">Sklep</a></li>
-					<li><a href="<?php echo base_url(); ?>">Strona Główna Zespołu </a></li>
+					<li><a href="<?= base_url() ?>shop">Sklep</a></li>
+					<li><a href="<?= base_url() ?>">Strona Główna Zespołu </a></li>
 				</ul>
 			<ul class="nav navbar-nav navbar-right">
 			
@@ -37,10 +37,10 @@
 
 				<li id='nav-login'>
 					<div>
-						<a href='<?php echo base_url(); ?>shop/user'>Logowanie</a>
+						<a href='<?= base_url() ?>shop/user'>Logowanie</a>
 					</div>
 					<div>
-						<a href='<?php echo base_url(); ?>shop/user/registration'>Rejestracja</a>
+						<a href='<?= base_url() ?>shop/user/registration'>Rejestracja</a>
 					</div>
 				</li>
 
@@ -48,12 +48,12 @@
 			
 			<li id='nav-login'>
 				<div>
-					<a href='<?php echo base_url(); ?>shop/user'>
-						Zalogowano: <?php echo $this->session->userdata('email'); ?>
+					<a href='<?= base_url() ?>shop/user'>
+						Zalogowano: <?= $this->session->userdata('email') ?>
 					</a>
 				</div>
 				<div id='nav-logout'>
-					<a href='<?php echo base_url(); ?>shop/user/logout'>
+					<a href='<?= base_url() ?>shop/user/logout'>
 						Wyloguj
 					</a>
 				</div>
@@ -62,21 +62,21 @@
 			<?php endif ?>
 			
 				<li>
-				    <?php echo form_open('shop/home/search', 'class="navbar-form navbar-left"'); ?>
+				    <?= form_open('shop/home/search', 'class="navbar-form navbar-left"') ?>
 						<div class="form-group">
 							<input type="text" name="phrase" class="form-control" minlength="3" placeholder="Szukaj produktu">
 							<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>
 						</div>
-					<?php echo form_close(); ?>
+					<?= form_close() ?>
 				</li>
-				<li><a class='showcart' href="<?= base_url(); ?>shop/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+				<li><a class='showcart' href="<?= base_url() ?>shop/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
 			</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
 	<div id="logo">
-        <img src="<?= base_url(); ?>images/nk_logo.png" alt="">
+        <img src="<?= base_url() ?>images/nk_logo.png" alt="">
     </div>
     <div class="row">
 	    <div class=''>
@@ -85,31 +85,31 @@
 				    <li>
 				    	<div id='title'>Menu</div>
 				    </li>
-					<a href='<?php echo base_url(); ?>shop'>
+					<a href='<?= base_url() ?>shop'>
 						<li class='hover'>Strona Główna</li>
 					</a>
 					<?php foreach($categories as $row): ?>
-					<a href='<?= base_url(); ?>shop/home/category/<?php echo $row->id; ?>'>
-						<li class='hover'><?php echo $row->name; ?></li>
+					<a href='<?= base_url() ?>shop/home/category/<?= $row->id ?>'>
+						<li class='hover'><?= $row->name ?></li>
 					</a>
 					<?php endforeach ?>
-					<a href ='<?= base_url(); ?>shop/cart'>
+					<a href ='<?= base_url() ?>shop/cart'>
 						<li class='hover cart'>Koszyk</li>
 					</a>
 
 				<?php if($this->session->userdata('logged_in') != 1): ?>
 
-					<a href='<?php echo base_url(); ?>shop/user'>
+					<a href='<?= base_url() ?>shop/user'>
 						<li class='hover'>Logowanie</li>
 					</a>
-		        	<a href='<?php echo base_url(); ?>shop/user/registration'>
+		        	<a href='<?= base_url() ?>shop/user/registration'>
 		        		<li class='hover'>Rejestracja</li>
 		        	</a>
 		        <?php else: ?>
-					<a href='<?php echo base_url(); ?>shop/user'>
+					<a href='<?= base_url() ?>shop/user'>
 						<li class='hover'>Profil</li>
 					</a>
-		        	<a href='<?= base_url(); ?>shop/user/logout'>
+		        	<a href='<?= base_url() ?>shop/user/logout'>
 		        		<li class='hover'>Wyloguj</li>
 		        	</a>
 		        <?php endif ?>

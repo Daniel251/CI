@@ -1,11 +1,11 @@
 <div class="edit-profile">
 <div class='row'>
     <div class='center error'>
-        <?php echo $this->session->flashdata('errors'); ?>
+        <?= $this->session->flashdata('errors') ?>
     </div>
 </div> 
     <div class='header'>Zmień hasło:</div>
-    <?php echo form_open('shop/user/edit_password/'.$code = isset($code) ? $code : '' ); ?>
+    <?= form_open('shop/user/edit_password/'.$code = isset($code) ? $code : '' ) ?>
      <div class='row'>
         <div class='label'>
             Wpisz nowe hasło: 
@@ -25,5 +25,5 @@
     <div class='center'>
         <button type='submit' class='submit-btn'>Potwierdź</button>
     </div>
-    <?php echo form_close(); ?>
+    <?= form_close() ?>
 </div>

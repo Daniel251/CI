@@ -1,14 +1,14 @@
 <div class="error">
-    <?php echo $this->session->flashdata('error'); ?>
+    <?= $this->session->flashdata('error') ?>
 </div>
-<?php echo form_open_multipart('cms/admin/add_video') ?>
+<?= form_open_multipart('cms/admin/add_video') ?>
 	<div class="form-group">
 		<label>Nazwa filmu</label>
-		<input type="text" name="description" class="form-control input" value='<?php echo $this->session->flashdata('description'); ?>' required>
+		<input type="text" name="description" class="form-control input" value='<?= $this->session->flashdata('description') ?>' required>
 	</div>
 	<div class="form-group">
 		<label>Link</label>
-		<input type="text" name="link" class="form-control input" value='<?php echo $this->session->flashdata('link'); ?>' required>
+		<input type="text" name="link" class="form-control input" value='<?= $this->session->flashdata('link') ?>' required>
 	</div>
 	<div class="form-group">
 		<label>Zdjęcie</label>

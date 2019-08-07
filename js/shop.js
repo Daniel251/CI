@@ -45,7 +45,7 @@ $(document).ready(function(){
                     $("#"+id).notify(
                         "Dodano do koszyka",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
                 else{
@@ -53,7 +53,7 @@ $(document).ready(function(){
                     $("#"+id).notify(
                         "Błąd",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
             }
@@ -98,7 +98,7 @@ $(document).ready(function(){
                     $("#logo").notify(
                         "Błąd",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
             }
@@ -133,7 +133,7 @@ $(document).ready(function(){
                     $("#logo").notify(
                         "Błąd",
                         { position:"top",
-                        autoHideDelay: 2000}
+                        autoHideDelay: 1000}
                     );
                 }
             }
