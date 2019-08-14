@@ -16,7 +16,7 @@
             </div>    
             <?php if($this->session->flashdata('errors')): ?>
                 <div class='row'>
-                    <div class='col-sm-5 error center'>
+                    <div class=' error center'>
                         <?php echo $this->session->flashdata('errors') ?>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="title label col-sm-3">Email: </div>
                     <div class="label col-sm-9">
-                        <input type="email" name="email" required>
+                        <input type="email" name="email" value="<?php echo $this->session->flashdata('login_email') ?>" required>
                     </div>
                 </div>
                 <div class="row">

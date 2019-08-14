@@ -287,4 +287,14 @@ class Admin_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('orders');
 	}
+
+    public function get_package_types()
+    {
+        return $this->db->get('package_send_types')->result();
+	}
+
+    public function edit_package(int $packageId, array $packageData) : bool
+    {
+        return $this->db->where('id', $packageId)->update('package_send_types', $packageData);
+	}
 }

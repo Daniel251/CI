@@ -84,7 +84,7 @@ class Cart extends CI_Controller {
 			$this->form_validation->set_rules('street', 'Ulica', 'trim|alpha_numeric_spaces|max_length[50]');
 			$this->form_validation->set_rules('post_code', 'Kod pocztowy', 'trim|required|max_length[6]|regex_match[/[0-9]{2}\-[0-9]{3}/]');
 
-			if ($this->form_validation->run() == FALSE) {
+			if (!$this->form_validation->run()) {
 				$data['errors'] = validation_errors();
 				$this->session->set_flashdata($data);
 				redirect('shop/cart/order');

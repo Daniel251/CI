@@ -48,7 +48,7 @@ class User extends CI_Controller {
 			$this->form_validation->set_rules('street', 'Ulica', 'trim|alpha_numeric_spaces');
 			$this->form_validation->set_rules('post_code', 'Kod pocztowy', 'trim|required|max_length[6]|regex_match[/[0-9]{2}\-[0-9]{3}/]');
 
-			if ($this->form_validation->run() == TRUE) {
+			if ($this->form_validation->run()) {
 				$email = $this->input->post('email');
 				$name = $this->input->post('name');
 				$password = $this->input->post('password');
@@ -92,7 +92,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'trim|required');
 		$this->form_validation->set_rules('password', 'Hasło', 'trim|required');
 
-		if ($this->form_validation->run() == FALSE)
+		if (!$this->form_validation->run())
 		{
 			$data['errors'] = validation_errors();
 			$this->session->set_flashdata($data);
@@ -138,7 +138,7 @@ class User extends CI_Controller {
 				$this->form_validation->set_rules('street', 'Ulica', 'trim|alpha_numeric_spaces');
 				$this->form_validation->set_rules('post_code', 'Kod pocztowy', 'trim|required|max_length[6]|regex_match[/[0-9]{2}\-[0-9]{3}/]');
 
-				if ($this->form_validation->run() == TRUE) {
+				if ($this->form_validation->run()) {
 					$name = $this->input->post('name');
 					$surname = $this->input->post('surname');
 					$city = $this->input->post('city');
@@ -167,7 +167,7 @@ class User extends CI_Controller {
 				$this->form_validation->set_rules('password', 'Hasło', 'trim|required|max_length[255]|min_length[8]');
 				$this->form_validation->set_rules('password2', 'Hasło 2', 'trim|required|matches[password]');
 
-				if ($this->form_validation->run() == TRUE) {
+				if ($this->form_validation->run()) {
 					$password = $this->input->post('password');
 					$result = $this->User_model->edit_password($password);
 					$this->session->set_flashdata('ok', 'Hasło zostało zmienione');
@@ -186,7 +186,7 @@ class User extends CI_Controller {
 			$this->form_validation->set_rules('password', 'Hasło', 'trim|required|max_length[255]|min_length[8]');
 			$this->form_validation->set_rules('password2', 'Hasło 2', 'trim|required|matches[password]');
 
-			if ($this->form_validation->run() == TRUE)
+			if ($this->form_validation->run())
 			{
 				$password = $this->input->post('password');
 				$this->User_model->edit_password($password, $code);
@@ -209,7 +209,7 @@ class User extends CI_Controller {
 			} else {
 				$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 				$this->form_validation->set_rules('email2', 'Email', 'trim|required|matches[email]');
-				if ($this->form_validation->run() == FALSE) {
+				if (!$this->form_validation->run()) {
 					$data['errors'] = validation_errors();
 					$this->session->set_flashdata($data);
 					redirect('shop/user/edit_email');
@@ -249,7 +249,7 @@ class User extends CI_Controller {
 			if ($this->input->post() && $code == '0')
 			{
 				$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-				if ($this->form_validation->run() == FALSE) {
+				if (!$this->form_validation->run()) {
 					$this->session->set_flashdata('error', 'Błędny email');
 					redirect('shop/user/forget_password');
 				} else {

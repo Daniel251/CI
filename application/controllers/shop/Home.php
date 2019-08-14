@@ -58,7 +58,7 @@ class Home extends CI_Controller
     public function search()
     {
         $this->form_validation->set_rules('phrase', 'Szukana fraza', 'trim|required|min_length[3]|max_length[30]');
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run()) {
             $phrase = $this->input->post('phrase');
             $data['products'] = $this->Shop_model->find_products($phrase);
             if (!empty($data['products'])) {
