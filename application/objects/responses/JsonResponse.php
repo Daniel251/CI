@@ -1,11 +1,12 @@
 <?php
 
-namespace application\objects\responses;
+namespace app\objects\responses;
 
 final class JsonResponse extends Response
 {
     public function sendResponse()
     {
+        header('Content-Type: application/json');
         $data = [
             'status' => $this->status,
             'message' => $this->message,

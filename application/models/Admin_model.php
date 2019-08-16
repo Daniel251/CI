@@ -293,6 +293,17 @@ class Admin_model extends CI_Model {
         return $this->db->get('package_send_types')->result();
 	}
 
+    public function save_package(array $packageData) : int
+    {
+        try {
+            $this->db->insert('package_send_types', $packageData);
+            return $this->db->insert_id();
+        } catch (Exception $e) {
+            error_log($e);
+            return 0;
+        }
+	}
+
     public function edit_package(int $packageId, array $packageData) : bool
     {
         return $this->db->where('id', $packageId)->update('package_send_types', $packageData);

@@ -4,14 +4,12 @@
 <div class="error">
     <?php echo $this->session->flashdata('error') ?>
 </div>
-<a href="<?php echo base_url() ?>cms/admin/add_package">
-    <button class="btn btn-warning btn-lg btn-add">Dodaj typ paczki</button>
-</a>
 <table class="table">
     <thead>
     <th>Nazwa</th>
     <th>Cena</th>
     <th>Aktywna</th>
+    <th></th>
     </thead>
     <tbody>
     <?php foreach ($packageTypes as $type): ?>
@@ -26,5 +24,9 @@
             </td>
         </tr>
     <?php endforeach ?>
+    <tr id="add-package"><td></td><td></td><td></td><td><span id="save-error"></span></td></tr>
     </tbody>
 </table>
+<a id="add-package-type-btn" href="javascript:void(0)" onclick="addPackageRow()">
+    <button class="btn btn-warning btn-add">Dodaj typ paczki</button>
+</a>

@@ -16,6 +16,10 @@ class ComposerStaticInite6f922de2313f9ae7a6e3004244af075
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'a' => 
+        array (
+            'app\\' => 4,
+        ),
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
@@ -24,6 +28,10 @@ class ComposerStaticInite6f922de2313f9ae7a6e3004244af075
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
+        ),
+        'P' => 
+        array (
+            'Prophecy\\' => 9,
         ),
         'D' => 
         array (
@@ -39,6 +47,10 @@ class ComposerStaticInite6f922de2313f9ae7a6e3004244af075
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
+        'app\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application',
+        ),
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
@@ -50,6 +62,10 @@ class ComposerStaticInite6f922de2313f9ae7a6e3004244af075
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Prophecy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -67,13 +83,6 @@ class ComposerStaticInite6f922de2313f9ae7a6e3004244af075
             'org\\bovigo\\vfs' => 
             array (
                 0 => __DIR__ . '/..' . '/mikey179/vfsStream/src/main/php',
-            ),
-        ),
-        'P' => 
-        array (
-            'Prophecy\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
         ),
     );

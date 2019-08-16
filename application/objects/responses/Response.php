@@ -1,6 +1,6 @@
 <?php
 
-namespace application\objects\responses;
+namespace app\objects\responses;
 
 abstract class Response
 {
@@ -15,6 +15,9 @@ abstract class Response
     const STATUS_CODE_CONFLICT              = 409;
     const STATUS_CODE_INTERNAL_SERVER_ERROR = 500;
     const STAUTS_CODE_NOT_IMPLEMENTED       = 501;
+
+    const DATA_CHANGE_SUCCESS_MESSAGE = 'Zmiany zostały zapisane';
+    const DATA_CHANGE_ERROR_MESSAGE   = 'Wystąpił bład, zmiany nie zostały zapisane';
 
     protected $code = 0;
     protected $status = 0;

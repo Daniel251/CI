@@ -1,6 +1,6 @@
-<?php use application\objects\responses\JsonResponse;
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+use app\objects\responses\JsonResponse;
 
 class Admin extends CI_Controller
 {
@@ -667,20 +667,35 @@ class Admin extends CI_Controller
         }
     }
 
-    public function edit_package(int $packageId)
+    public function add_package()
     {
         $this->form_validation->set_rules('packageName', 'Nazwa paczki', 'trim|required|min_length[5]|max_length[40]');
-        $this->form_validation->set_rules('packagePrice', 'Cseena paczki', 'trim|required|numeric');
+        $this->form_validation->set_rules('packagePrice', 'Cena paczki', 'trim|required|numeric');
+        if ($this->form_validation->run()) {
+
+        }
+    }
+
+    public function save_package(int $packageId = 0)
+    {
+        $this->form_validation->set_rules('packageName', 'Nazwa paczki', 'trim|required|min_length[4]|max_length[40]');
+        $this->form_validation->set_rules('packagePrice', 'Cena paczki', 'trim|required|numeric');
         if ($this->form_validation->run()) {
             $packageData = [
                 'name' => $this->input->post('packageName'),
                 'price' => $this->input->post('packagePrice'),
                 'is_active' => (int)$this->input->post('packageIsActive'),
             ];
-//            echo (int)$this->Admin_model->edit_package($packageId, $packageData);
-//            JsonResponse::sendSuccess();
-        } else {
-            echo 0;
+            if ($packageId) {
+                if ($this->Admin_model->edit_package($packageId, $packageData)) {
+                    JsonResponse::sendSuccess(JsonResponse::DATA_CHANGE_SUCCESS_MESSAGE);
+                }
+            } else {
+                if ($savedPackageId = $this->Admin_model->save_package($packageData)) {
+                    JsonResponse::sendSuccess(JsonResponse::DATA_CHANGE_SUCCESS_MESSAGE, ['packageId' => $savedPackageId]);
+                }
+            }
         }
+        JsonResponse::sendError(JsonResponse::DATA_CHANGE_ERROR_MESSAGE);
     }
 }
