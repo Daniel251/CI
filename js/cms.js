@@ -22,6 +22,7 @@ function editPackage(packageId) {
         data: {'packageName': packageName, 'packagePrice': packagePrice, 'packageIsActive': packageIsActive},
 
         success: function (msg) {
+            console.log(msg.a);
             if (msg == 1) {
                 $.notify.defaults({className: "success"});
                 $('#edit-package-' + packageId).notify(

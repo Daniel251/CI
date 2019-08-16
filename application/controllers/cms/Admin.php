@@ -1,4 +1,6 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php use application\objects\responses\JsonResponse;
+
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 {
@@ -667,15 +669,16 @@ class Admin extends CI_Controller
 
     public function edit_package(int $packageId)
     {
-        $this->form_validation->set_rules('packageName', 'Nazwa paczki', 'trim|required');
-        $this->form_validation->set_rules('packagePrice', 'Cena paczki', 'trim|required');
+        $this->form_validation->set_rules('packageName', 'Nazwa paczki', 'trim|required|min_length[5]|max_length[40]');
+        $this->form_validation->set_rules('packagePrice', 'Cseena paczki', 'trim|required|numeric');
         if ($this->form_validation->run()) {
             $packageData = [
                 'name' => $this->input->post('packageName'),
                 'price' => $this->input->post('packagePrice'),
                 'is_active' => (int)$this->input->post('packageIsActive'),
             ];
-            echo (int)$this->Admin_model->edit_package($packageId, $packageData);
+//            echo (int)$this->Admin_model->edit_package($packageId, $packageData);
+//            JsonResponse::sendSuccess();
         } else {
             echo 0;
         }
