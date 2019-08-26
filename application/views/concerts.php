@@ -5,8 +5,8 @@
         <div id='table'>
             <ul>
                 <li class='row'></li>
-                <?php foreach($concerts_incoming as $row): ?>
-                     <li class='row'>
+                <?php foreach ($concerts_incoming as $row): ?>
+                    <li class='row'>
                         <div class='date'>
                             <p><?php echo $row->date ?></p>
                         </div>
@@ -18,7 +18,7 @@
                     </li>
                 <?php endforeach ?>
 
-                <?php foreach($concerts_past as $row): ?>
+                <?php foreach ($concerts_past as $row): ?>
 
                     <li class='row'>
                         <div class='date'>
@@ -35,4 +35,4 @@
             </ul>
         </div>
     </div>
-<div class='clear'></div>
+    <div class='clear'></div>

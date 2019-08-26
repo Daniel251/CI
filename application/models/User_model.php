@@ -2,7 +2,7 @@
 
 class User_model extends CI_Model
 {
-    public function register($email, $password, $name, $surname, $city, $street, $post_code, $is_admin = 0)
+    public function register(string $email, string $password, string $name, string $surname, string $city, string $street, string $post_code, int $is_admin = 0)
     {
         $query = $this->db->where('email', $email)->get('users');
         if ($query->num_rows() == 1) {
@@ -11,9 +11,9 @@ class User_model extends CI_Model
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $this->load->helper('string');
             $code = random_string('alnum', 20);
-            $data = array(
+            $data = [
                 'email' => $email,
-                'PASSWORD' => $password_hash,
+                'password' => $password_hash,
                 'name' => $name,
                 'surname' => $surname,
                 'city' => $city,
@@ -21,12 +21,13 @@ class User_model extends CI_Model
                 'post_code' => $post_code,
                 'activation_code' => $code,
                 'is_admin' => $is_admin
-            );
+            ];
             $this->db->insert('users', $data);
             $link = base_url() . "shop/user/activation/{$code}";
-            $message = "Aby aktywować konto w skelpie Nocnego Kochanka kliknij link: $link";
+            $link = '<a href="' . $link . '">' . base_url() . '</a>';
+            $message = "Aby aktywować konto w skelpie Nocnego Kochanka kliknij wejdź w link: $link";
             $this->load->library('email');
-            $this->email->from('your@example.com', 'Nocny Kochanek');
+            $this->email->from('test@test.com', 'Nocny Kochanek');
             $this->email->to($email);
             $this->email->subject('Aktywacja konta w sklepie Nocnego Kochanka');
             $this->email->message($message);
@@ -35,7 +36,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function activate_account($code)
+    public function activate_account(string $code)
     {
         $query = $this->db->where('activation_code', $code)->get('users');
         if ($query->num_rows() == 1) {
@@ -46,7 +47,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function login($email, $password)
+    public function login(string $email, string $password): int
     {
         $query = $this->db->where('email', $email)->get('users');
         if ($query->num_rows() == 1) {
@@ -54,7 +55,7 @@ class User_model extends CI_Model
             $hash = $result->password;
             if ($result->activation_code == '1') {
                 if (password_verify($password, $hash)) {
-                    $data = array(
+                    $data = [
                         'logged_in' => 1,
                         'id' => $result->id,
                         'email' => $result->email,
@@ -64,7 +65,7 @@ class User_model extends CI_Model
                         'street' => $result->street,
                         'post_code' => $result->post_code,
                         'is_admin' => $result->is_admin
-                    );
+                    ];
                     $this->session->set_userdata($data);
                     return 0;
                 } else {
@@ -83,7 +84,7 @@ class User_model extends CI_Model
         $this->session->sess_destroy();
     }
 
-    public function edit_profile($name, $surname, $city, $street, $post_code)
+    public function edit_profile(string $name, string $surname, string $city, string $street, string $post_code)
     {
         $this->db->set('name', $name);
         $this->db->set('surname', $surname);
@@ -103,14 +104,15 @@ class User_model extends CI_Model
         $this->session->set_flashdata('ok', 'Zmieniono dane');
     }
 
-    public function edit_password($password, $code = 0)
+    public function edit_password(string $password, string $code = '')
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
-        if ($code == '0') {
+        if ($code == '') {
             $email = $this->session->userdata('email');
             $this->db->set('password', $password);
             $this->db->where('email', $email);
             $this->db->update('users');
+
             return 1;
         } else {
             $query = $this->db->where('new_password_code', $code)->get('users');
@@ -128,7 +130,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function edit_email($new_email)
+    public function edit_email(string $new_email)
     {
         $query = $this->db->where('email', $new_email)->get('users');
         if ($query->num_rows() == 1) {
@@ -143,7 +145,8 @@ class User_model extends CI_Model
             );
             $this->db->where('email', $email)->update('users', $array);
             $link = base_url() . "shop/user/activate_email/{$code}";
-            $message = "Aby aktywować nowego emaila w skelpie Nocnego Kochanka kliknij link: {$link}";
+            $link = '<a href="' . $link . '">' . base_url() . '</a>';
+            $message = "Aby aktywować nowego emaila w skelpie Nocnego Kochanka kliknij link: $link";
             $this->load->library('email');
             $this->email->from('sklep@nocny.pl', 'Nocny Kochanek');
             $this->email->to($new_email);
@@ -154,17 +157,17 @@ class User_model extends CI_Model
         }
     }
 
-    public function activate_admin($email)
+    public function activate_admin(string $email)
     {
         $this->db->where('email', $email)->set('is_admin', 1)->update('users');
     }
 
-    public function find_email($phrase)
+    public function find_email(string $phrase)
     {
         return $this->db->like('email', $phrase)->order_by('email', 'ASC')->get('users')->result();
     }
 
-    public function activate_email($code)
+    public function activate_email(string $code)
     {
         $query = $this->db->select('new_email')->where('new_email_code', $code)->get('users');
         if ($query->num_rows() == 1) {
@@ -183,7 +186,7 @@ class User_model extends CI_Model
         }
     }
 
-    public function set_password_code($email)
+    public function set_password_code(string $email)
     {
         $query = $this->db->select('id')->where('email', $email)->get('users');
         if ($query->num_rows() == 1) {
@@ -192,7 +195,8 @@ class User_model extends CI_Model
             $this->db->set('new_password_code', $code)->where('email', $email)->update('users');
 
             $link = base_url() . "shop/user/forget_password/{$code}";
-            $message = "Aby aktywować nowego emaila w skelpie Nocnego Kochanka kliknij link: " . $link;
+            $link = '<a href="' . $link . '">' . base_url() . '</a>';
+            $message = "Ze sklepu Nocnego Kochanka została wysłana prośba o zmiane hasła. Aby to zrobić wejdź w link: " . $link;
             $this->load->library('email');
             $this->email->from('email@email.com', 'Nocny Kochanek');
             $this->email->to($email);

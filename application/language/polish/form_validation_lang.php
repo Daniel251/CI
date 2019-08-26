@@ -10,6 +10,7 @@ $lang['min_length']            = "Długość pola %s nie może być mniejsza ni�
 $lang['max_length']            = "Długość pola %s nie może być większa niż %s.";
 $lang['exact_length']          = "Pole %s musi zawierać dokładnie %s znak(i).";
 $lang['alpha']                 = "Pole %s może zawierać tylko litery.";
+$lang['alpha_numeric_spaces']  = "Pole %s może zawierać tylko litery, spacje i ukośniki";
 $lang['alpha_numeric']         = "Pole %s może zawierać tylko znaki alfanumeryczne.";
 $lang['alpha_dash']            = "Pole %s może zawierać tylko znaki alfanumeryczne, podkreślenia i myślniki.";
 $lang['numeric']               = "Pole %s może zawierać tylko liczby.";

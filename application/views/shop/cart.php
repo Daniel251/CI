@@ -50,44 +50,21 @@
                     </td>
                 </tr>
             <?php endforeach ?>
-            <tr>
-                <td>
-                    Przesyłka: <span id="package-type">( Wybierz typ przesyłki )</span>
-                </td>
-                <td class="text-center">
-                    <span class='qty'></span>
-                <td class='price'>
-                    <span class="package-price"></span>
-                </td>
-                <td class='price'>
-                    <span class="package-price"></span>
-                </td>
-            </tr>
             </tbody>
         </table>
-        <h2>
-			<span id='span-sum'>
-	    		Suma: 
-	    		<span id='sum'>
-	    			<?php echo $this->cart->format_number($this->cart->total()) ?>
-	    		</span> zł
-			</span>
-        </h2>
+        <div class="price-total">
+            Suma:
+            <span id='total-cart'>
+                <?php echo $this->cart->format_number($this->cart->total()) ?>
+            </span> zł
+        </div>
         <div class='clear'></div>
         <div class="row">
             <?php echo form_open('shop/cart/order') ?>
-            <div id='cart-package-type' class="col-sm-4">
-                <div class='header'>Sposób wysyłki:</div>
-                <input type="radio" id="package-poczta" name="package" value="poczta"> Paczka pocztowa priorytet ( 10 zł )<br>
-                <input type="radio" id="package-kurier" name="package" value="kurier"> Kurier ( 15 zł )<br>
-            </div>
             <div id='order-btn'>
-                <button type="submit" disabled="disabled" id='btn-cart' class='submit-btn'></button>
+                <button type="submit" id='btn-cart' class='submit-btn'>Przejdz do podsumowania zamówienia</button>
             </div>
             </form>
-            <span class='hidden' id="total-cart">
-		       		<?php echo $this->cart->format_number($this->cart->total()) ?>
-		       </span>
         </div>
     <?php endif ?>
 </div>

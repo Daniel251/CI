@@ -15,6 +15,3 @@ class Videos extends CI_Controller {
 		$this->load->view('footer', $data);
 	}
 }
-
-/* End of file  */
-/* Location: ./application/controllers/ */

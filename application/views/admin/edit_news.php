@@ -1,12 +1,12 @@
-<?php echo form_open_multipart('cms/admin/edit_news/'.$news->id) ?>
+<?php echo form_open_multipart('cms/admin/edit_news/' . $news->id) ?>
     <div class="form-group">
         <label>Tytuł posta</label>
         <input type="text" name="title" class="form-control input" value='<?php echo $news->title; ?>' required>
     </div>
     <div id='news-date' class="form-group">
-                <label>Data i godzina posta</label>
-                <input type="datetime" name="date" class="form-control input" value='<?php echo $news->date; ?>' required>
-            </div>
+        <label>Data i godzina posta</label>
+        <input type="datetime" name="date" class="form-control input" value='<?php echo $news->date; ?>' required>
+    </div>
     <div class="form-group">
         <div class="checkbox">
             <label>

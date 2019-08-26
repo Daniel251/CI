@@ -6,7 +6,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Shop_model');
-        $data['categories'] = $this->Shop_model->show_menu_categories();
+        $data['categories'] = $this->Shop_model->get_menu_categories();
         $data['title'] = 'Sklep - Nocny Kochanek';
         $this->load->view('shop/header', $data);
     }
@@ -19,7 +19,7 @@ class Home extends CI_Controller
         $this->load->view('shop/footer');
     }
 
-    public function category($id = 0)
+    public function category(int $id = 0)
     {
         switch ($id) {
             case 1:
@@ -41,7 +41,7 @@ class Home extends CI_Controller
         $this->load->view('shop/footer');
     }
 
-    public function product($id = 0)
+    public function product(int $id = 0)
     {
         $result = $this->Shop_model->show_product_info($id);
         if ($result) {
@@ -71,6 +71,3 @@ class Home extends CI_Controller
         $this->load->view('shop/footer');
     }
 }
-
-/* End of file  */
-/* Location: ./application/controllers/ */

@@ -1,19 +1,19 @@
 <div id="account">
-<div class='row'>
-    <div class='center ok'>
-        <?php echo $this->session->flashdata('ok') ?>
+    <div class='row'>
+        <div class='center ok'>
+            <?php echo $this->session->flashdata('ok') ?>
+        </div>
     </div>
-</div>
     <div class='header'>
-            Dane użytkownika:
+        Dane użytkownika:
     </div>
     <table>
         <tr>
-            <td class='heading'>Email: </td>
+            <td class='heading'>Email:</td>
             <td><?php echo $this->session->userdata('email') ?></td>
         </tr>
         <tr>
-            <td class='heading'>Imię:  </td>
+            <td class='heading'>Imię:</td>
             <td><?php echo $this->session->userdata('name') ?></td>
         </tr>
         <tr>
@@ -34,6 +34,8 @@
         </tr>
     </table>
     <div class='row button'>
-         <a href='<?php echo base_url() ?>shop/user/edit_profile'><button class='submit-btn'>Edycja danych profilu</button></a>
+        <a href='<?php echo base_url() ?>shop/user/edit_profile'>
+            <button class='submit-btn'>Edycja danych profilu</button>
+        </a>
     </div>
 </div>

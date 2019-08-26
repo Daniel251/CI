@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Band extends CI_Controller {
 
@@ -9,6 +8,5 @@ class Band extends CI_Controller {
 		$this->load->view('header', $data);
 		$this->load->view('band');
 		$this->load->view('footer');
-
 	}
 }

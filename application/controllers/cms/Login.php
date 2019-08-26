@@ -44,6 +44,3 @@ class Login extends CI_Controller
         }
     }
 }
-
-/* End of file  */
-/* Location: ./application/controllers/ */

@@ -6,16 +6,18 @@
 </div>
 <table class="table">
     <thead>
-    <th>Nazwa</th>
-    <th>Cena</th>
-    <th>Aktywna</th>
-    <th></th>
+    <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+        <th>Aktywna</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
     <?php foreach ($packageTypes as $type): ?>
         <tr>
             <td><input id="package-name-<?php echo $type->id ?>" type="text" value="<?php echo $type->name ?>"></td>
-            <td><input id="package-price-<?php echo $type->id ?>" type="number" value="<?php echo $type->price ?>"></td>
+            <td><?php echo $type->price ?></td>
             <td><input id="package-is-active-<?php echo $type->id ?>" type="checkbox" <?php echo $type->is_active ? 'checked' : '' ?>></td>
             <td>
                 <a id="edit-package-<?php echo $type->id ?>" href="javascript:void(0)" onclick="editPackage(<?php echo $type->id ?>)">

@@ -37,7 +37,7 @@ final class JsonResponse extends Response
      * @param $message
      * @param int $responseCode
      */
-    public static function sendError($message, $responseCode = Response::STATUS_CODE_BAD_REQUEST)
+    public static function sendError($message = '', $responseCode = Response::STATUS_CODE_BAD_REQUEST)
     {
         http_response_code($responseCode);
 

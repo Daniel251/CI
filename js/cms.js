@@ -46,7 +46,7 @@ function editPackage(packageId) {
 
 function addPackageRow() {
     $('#add-package').before('' +
-        '<tr class="new-package-row">' +
+        '<tr id="new-package-row">' +
             '<td><input id="package-name-new" type="text"></td>' +
             '<td><input id="package-price-new" type="number"></td>' +
             '<td><input id="package-is-active-new" type="checkbox"></td>' +
@@ -79,7 +79,7 @@ function saveNewPackage() {
             $('#add-package').before('' +
                 '<tr>' +
                     '<td><input id="package-name-' + newPackageId + '" value="' + packageName + '" type="text"></td>' +
-                    '<td><input id="package-price-' + newPackageId + '" value="' + packagePrice + '" type="number"></td>' +
+                    '<td>' + packagePrice + '</td>' +
                     '<td><input id="package-is-active' + newPackageId + '" ' + checked + '  type="checkbox"></td>' +
                     '<td>' +
                         '<a id="edit-package-' + newPackageId + '" href="javascript:void(0)" onclick="editPackage(' + newPackageId + ')">' +
