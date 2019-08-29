@@ -48,5 +48,5 @@
         <label>Zdjęcie nr 2</label>
         <input type='file' name='img2'>
     </div>
-    <button type='submit' class='btn btn-warning'>Zatwierdź Produkt</button>
+    <button type='submit' class='btn btn-warning'>Zapisz produkt</button>
 </form>

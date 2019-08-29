@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow"/>
-    <script src='<?php echo base_url() ?>js/jquery2.js'></script>
+    <script src='<?php echo base_url() ?>js/jquery_2.js'></script>
     <link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/lightbox.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/shop.css">

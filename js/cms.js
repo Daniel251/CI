@@ -21,25 +21,26 @@ function editPackage(packageId) {
         url: document.location.origin + '/cms/admin/save_package/' + packageId,
         data: {'packageName': packageName, 'packagePrice': packagePrice, 'packageIsActive': packageIsActive},
 
-        success: function (response) {
-            $.notify.defaults({className: "success"});
-            $('#edit-package-' + packageId).notify(
-                response.message,
-                {
-                    position: "left",
-                    autoHideDelay: 2000
-                }
-            );
-        },
-        error: function (response) {
-            $.notify.defaults({className: "warn"});
-            $('#edit-package-' + packageId).notify(
-                response.responseJSON.message,
-                {
-                    position: "left",
-                    autoHideDelay: 2000
-                }
-            );
+        success: function (status) {
+            if (status == 1) {
+                $.notify.defaults({className: "success"});
+                $('#edit-package-' + packageId).notify(
+                    'Zmiany zostały zapisane',
+                    {
+                        position: "left",
+                        autoHideDelay: 2000
+                    }
+                );
+            } else {
+                $.notify.defaults({className: "warn"});
+                $('#edit-package-' + packageId).notify(
+                    'Wystąpił bład, zmiany nie zostały zapisane',
+                    {
+                        position: "left",
+                        autoHideDelay: 2000
+                    }
+                );
+            }
         }
     });
 }
@@ -72,43 +73,45 @@ function saveNewPackage() {
         data: {'packageName': packageName, 'packagePrice': packagePrice, 'packageIsActive': packageIsActive},
 
         success: function (response) {
-            $('#new-package-row').remove();
-            const newPackageId = response.data.packageId;
-            const checked = packageIsActive ? 'checked' : '';
+            if (response != 0) {
+                response = JSON.parse(response);
+                $('#new-package-row').remove();
+                const newPackageId = response.id;
+                const checked = response.is_active ? 'checked' : '';
 
-            $('#add-package').before('' +
-                '<tr>' +
+                $('#add-package').before('' +
+                    '<tr>' +
                     '<td><input id="package-name-' + newPackageId + '" value="' + packageName + '" type="text"></td>' +
                     '<td>' + packagePrice + '</td>' +
                     '<td><input id="package-is-active' + newPackageId + '" ' + checked + '  type="checkbox"></td>' +
                     '<td>' +
-                        '<a id="edit-package-' + newPackageId + '" href="javascript:void(0)" onclick="editPackage(' + newPackageId + ')">' +
-                            '<span class="glyphicon glyphicon-ok"></span>' +
-                        '</a>' +
+                    '<a id="edit-package-' + newPackageId + '" href="javascript:void(0)" onclick="editPackage(' + newPackageId + ')">' +
+                    '<span class="glyphicon glyphicon-ok"></span>' +
+                    '</a>' +
                     '</td>' +
-                '</tr>' +
-                '');
-            $('#add-package-type-btn').removeClass('hidden');
+                    '</tr>' +
+                    '');
+                $('#add-package-type-btn').removeClass('hidden');
 
 
-            $.notify.defaults({className: "success"});
-            $('#edit-package-' + newPackageId).notify(
-                response.message,
-                {
-                    position: "left",
-                    autoHideDelay: 2000
-                }
-            );
-        },
-        error: function (response) {
-            $.notify.defaults({className: "warn"});
-            $('#save-error').notify(
-                response.responseJSON.message,
-                {
-                    position: "left",
-                    autoHideDelay: 2000
-                }
-            );
+                $.notify.defaults({className: "success"});
+                $('#edit-package-' + newPackageId).notify(
+                    'Zmiany zostały zapisane',
+                    {
+                        position: "left",
+                        autoHideDelay: 2000
+                    }
+                );
+            } else {
+                $.notify.defaults({className: "warn"});
+                $('#save-error').notify(
+                    'Wystąpił błąd',
+                    {
+                        position: "left",
+                        autoHideDelay: 2000
+                    }
+                );
+            }
         }
     });
 }

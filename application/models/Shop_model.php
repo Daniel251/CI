@@ -2,7 +2,6 @@
 
 class Shop_model extends CI_Model
 {
-
     public function get_menu_categories(): array
     {
         return $this->db->get('categories')->result();
@@ -58,6 +57,15 @@ class Shop_model extends CI_Model
     public function get_package_types(): array
     {
         return $this->db->get('package_send_types')->result();
+    }
+    public function get_active_package_types(): array
+    {
+        return $this->db->where('is_active', 1)->get('package_send_types')->result();
+    }
+
+    public function get_package_by_id(int $package_id)
+    {
+        return $this->db->where('id', $package_id)->get('package_send_types')->first_row();
     }
 
     public function get_user_orders(int $user_id): array

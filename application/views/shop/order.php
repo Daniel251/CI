@@ -56,7 +56,9 @@
                 </tbody>
             </table>
             <div class="price-total">
-                Suma: <?php echo $this->cart->format_number($total, 2) ?> zł
+                <span id='sum'>
+                    <?php echo $this->cart->format_number($total) ?>
+                </span> zł
             </div>
             <div class='clear'></div>
         <?php endif ?>
@@ -66,16 +68,14 @@
     </span>
     <?php echo form_open('shop/cart/finalize', ' id="form-order"') ?>
     <div class="row">
-        <div id='cart-package-type' class="col-sm-5">
+        <div id='cart-package-type' class="col-lg-5">
             <div class='header'>Sposób wysyłki:</div>
             <?php foreach ($packages as $package): ?>
-                <div>
                     <label onclick="updateCart('<?php echo $package->name; ?> ', '<?php echo $package->price; ?>')"
                            id="package-label-<?php echo $package->id; ?>" for="package-<?php echo $package->id; ?>">
                         <input id="package-<?php echo $package->id; ?>" type="radio" value="<?php echo $package->id ?>"
                                name="package_id"> <?php echo $package->name; ?> ( <?php echo $package->price; ?> zł )
                     </label>
-                </div>
 
             <?php endforeach; ?>
         </div>
@@ -141,8 +141,8 @@
                        name="post_code" value='<?php echo $this->session->userdata('post_code') ?>' required>
             </div>
 
-            <input type="hidden" name="hash" value="<?php echo $hash ?>">
-            <input type="hidden" name="payment_description" value="<?php echo $description ?>">
+<!--            <input type="hidden" name="hash" value="--><?php //echo $hash ?><!--">-->
+<!--            <input type="hidden" name="payment_description" value="--><?php //echo $payment_description ?><!--">-->
             <input type="hidden" name="total" value="<?php echo $total ?>">
             <br/>
             <div class="center">
@@ -161,7 +161,7 @@
 
             $("input[name=package_id]").on("click", function () {
                 $('#btn-order').removeAttr('disabled');
-                $('#btn-order').html('Złóż zamówienie');
+                $('#btn-order').html('Złóż zamówienie i przejdź do płatności');
             });
         }
     </script>

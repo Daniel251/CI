@@ -3,7 +3,7 @@
 class Admin_model extends CI_Model
 {
 
-    public function get_news($id = 0)
+    public function get_news(int $id = 0)
     {
         if ($id == 0) {
             return $this->db->order_by('date', 'DESC')->get('news')->result();
@@ -132,7 +132,7 @@ class Admin_model extends CI_Model
         $this->session->set_flashdata('ok', 'Edytowano film');
     }
 
-    public function remove_video($id)
+    public function remove_video(int $id)
     {
         $query = $this->db->select('img_name')->where('id', $id)->get('videos')->row();
         $img_name = $query->img_name;
@@ -321,13 +321,13 @@ class Admin_model extends CI_Model
         $this->db->update('orderpackage');
     }
 
-    public function save_package(array $packageData): int
+    public function save_package(array $packageData)
     {
         try {
             $this->db->insert('package_send_types', $packageData);
-            return $this->db->insert_id();
-        } catch (Exception $e) {
-            error_log($e);
+            return array_merge($packageData, ['id' => $this->db->insert_id()]);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
             return 0;
         }
     }

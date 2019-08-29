@@ -1,7 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-use app\objects\responses\JsonResponse;
-
 class Admin extends CI_Controller
 {
 
@@ -565,7 +563,7 @@ class Admin extends CI_Controller
     public function save_package(int $packageId = 0)
     {
         $this->form_validation->set_rules('packageName', 'Nazwa paczki', 'trim|required|min_length[4]|max_length[40]');
-        $this->form_validation->set_rules('packagePrice', 'Cena paczki', 'trim|required|numeric');
+        $this->form_validation->set_rules('packagePrice', 'Cena paczki', 'trim|numeric');
         if ($this->form_validation->run()) {
             $packageData = [
                 'name' => $this->input->post('packageName'),
@@ -573,15 +571,18 @@ class Admin extends CI_Controller
             ];
             if ($packageId) {
                 if ($this->Admin_model->edit_package($packageId, $packageData)) {
-                    JsonResponse::sendSuccess(JsonResponse::DATA_CHANGE_SUCCESS_MESSAGE);
+                    echo 1;
+                    return 0;
                 }
             } else {
                 $packageData['price'] = $this->input->post('packagePrice');
-                if ($savedPackageId = $this->Admin_model->save_package($packageData)) {
-                    JsonResponse::sendSuccess(JsonResponse::DATA_CHANGE_SUCCESS_MESSAGE, ['packageId' => $savedPackageId]);
+                if ($savedPackageData = $this->Admin_model->save_package($packageData)) {
+                    echo json_encode($savedPackageData);
+                    return 0;
                 }
             }
         }
-        JsonResponse::sendError(JsonResponse::DATA_CHANGE_ERROR_MESSAGE);
+        echo 0;
+        return 0;
     }
 }

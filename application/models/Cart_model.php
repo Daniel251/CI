@@ -4,6 +4,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Cart_model extends CI_Model
 {
+    const PAYLANE_HASH_SALT = 'ko3me9cr';
+
     public function __construct()
     {
         parent::__construct();
@@ -78,23 +80,10 @@ class Cart_model extends CI_Model
         }
     }
 
-    public function order($email, $name, $surname, $city, $street, $post_code, $packageId, $totalWithoutPackage, $payment_description)
+    public function order(array $order_data): bool
     {
         try {
-            $package = $this->db->where('id', $packageId)->get('package_send_types')->first_row();
-            $total = $totalWithoutPackage + (float)$package->price;
-            $data = [
-                'user_id' => $this->session->userdata('id') == NULL ? 0 : $this->session->userdata('id'),
-                'email' => $email,
-                'name' => $name,
-                'surname' => $surname,
-                'city' => $city,
-                'street' => $street,
-                'post_code' => $post_code,
-                'total' => $total,
-                'payment_description' => $payment_description
-            ];
-            $this->db->insert('orders', $data);
+            $this->db->insert('orders', $order_data);
             $order_id = $this->db->insert_id();
 
             $products = $this->cart->contents();
@@ -111,23 +100,23 @@ class Cart_model extends CI_Model
 
             $data = [
                 'order_id' => $order_id,
-                'package_id' => $packageId
+                'package_id' => $order_data['package_id'],
             ];
             $this->db->insert('orderpackage', $data);
 
             $message = 'Twoje zamówienie zostało złożone! ';
             $this->load->library('email');
             $this->email->from('d.skiepko@gmail.com', 'Nocny Kochanek');
-            $this->email->to($email);
+            $this->email->to($order_data['email']);
             $this->email->subject('Oczywiście to nie jest prawdziwy sklep zespołu i towar nie zostanie wysłany!');
             $this->email->message($message);
             $this->email->send();
 
-            return $total;
+            return true;
         } catch (Exception $e) {
             error_log($e);
 
-            return 0;
+            return false;
         }
     }
 
@@ -143,21 +132,18 @@ class Cart_model extends CI_Model
         return $string;
     }
 
-    public function payment_hash($random_str, $total)
+    public function get_payment_hash($payment_description, $total)
     {
-        return SHA1("ko3me9cr|" . $random_str . "|" . $total . "|PLN|S");
+        return SHA1(self::PAYLANE_HASH_SALT . '|' . $payment_description . "|" . $total . "|PLN|S");
     }
 
-    public function finish_payment($id_sale, $status, $amount, $description, $hash)
+    public function finish_payment(array $payment_data): int
     {
-        $orderId = $this->db->where('hash', $hash)->get('orders')->first_row()->id;
-        $this->db->update();
+        $this->db->insert('payments', $payment_data);
 
-        $data = [
-            'payment_id' => $id_sale,
-            'payment_status' => $status
-        ];
-        $this->db->where('payment_description', "$payment_description");
-        $this->db->update('orders', $data);
+        $this->db->where('payment_description', $payment_data['description']);
+        $this->db->update('orders', ['payment_id' => $payment_data['id']]);
+
+        return $this->db->affected_rows();
     }
 }

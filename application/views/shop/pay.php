@@ -7,7 +7,7 @@
     <input type="hidden" name="transaction_type" value="S">
     <input type="hidden" name="back_url" value="<?php echo base_url() ?>shop/cart/finish_payment">
     <input type="hidden" name="language" value="en">
-    <input type="hidden" name="hash" value="<?php echo $hash ?>"/>
+    <input type="hidden" name="hash" value="<?php echo $payment_hash ?>"/>
     <button type="submit"></button>
 </form>
 <script>

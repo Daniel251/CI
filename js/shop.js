@@ -9,25 +9,26 @@ $(document).ready(function () {
             data: "",
             dataType: "html",
 
-            success: function () {
-                $.notify.defaults({className: "success"});
-                $("#" + id).notify(
-                    "Dodano do koszyka",
-                    {
-                        position: "top",
-                        autoHideDelay: 1000
-                    }
-                );
-            },
-            error: function () {
-                $.notify.defaults({className: "warn"});
-                $("#" + id).notify(
-                    "Błąd",
-                    {
-                        position: "top",
-                        autoHideDelay: 1000
-                    }
-                );
+            success: function (status) {
+                if (status == 1) {
+                    $.notify.defaults({className: "success"});
+                    $("#" + id).notify(
+                        "Dodano do koszyka",
+                        {
+                            position: "top",
+                            autoHideDelay: 1000
+                        }
+                    );
+                } else {
+                    $.notify.defaults({className: "warn"});
+                    $("#" + id).notify(
+                        "Błąd",
+                        {
+                            position: "top",
+                            autoHideDelay: 1000
+                        }
+                    );
+                }
             }
         });
     });

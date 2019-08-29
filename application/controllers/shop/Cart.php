@@ -1,6 +1,4 @@
-<?php use app\objects\responses\JsonResponse;
-
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Cart extends CI_Controller
 {
@@ -25,9 +23,9 @@ class Cart extends CI_Controller
     public function add(int $id, $size = 0)
     {
         if ($this->Cart_model->add($id, $size)) {
-            JsonResponse::sendSuccess();
+            echo 1;
         } else {
-            JsonResponse::sendError();
+            echo 0;
         }
     }
 
@@ -39,20 +37,18 @@ class Cart extends CI_Controller
 
     public function order()
     {
-
         if ($this->cart->contents()) {
-            $data['packages'] = $this->Shop_model->get_package_types();
+            $data['packages'] = $this->Shop_model->get_active_package_types();
             $data['categories'] = $this->Shop_model->get_menu_categories();
             $data['title'] = 'Sklep - Nocny Kochanek';
 
             $data['total'] = $total = $this->cart->format_number($this->cart->total());
-            $random_str = $this->Cart_model->random_string(15);
-            $data['description'] = $random_str;
-            $data['hash'] = $this->Cart_model->payment_hash($random_str, $total);
+            $payment_description = $this->Cart_model->random_string(15);
+            $payment_hash = $this->Cart_model->get_payment_hash($payment_description, $total);
 
-            $this->session->set_userdata('hash', $data['hash']);
+            $this->session->set_userdata('payment_hash', $payment_hash);
+            $this->session->set_userdata('payment_description', $payment_description);
             $this->session->set_userdata('total', $total);
-            $this->session->set_userdata('payment_description', $random_str);
 
             $this->load->view('shop/header', $data);
             $this->load->view('shop/order', $data);
@@ -72,36 +68,37 @@ class Cart extends CI_Controller
             $this->form_validation->set_rules('city', 'Miasto', 'trim|required|alpha_numeric_spaces|max_length[50]');
             $this->form_validation->set_rules('street', 'Ulica', 'trim|alpha_numeric_spaces|max_length[50]');
             $this->form_validation->set_rules('post_code', 'Kod pocztowy', 'trim|required|max_length[6]|regex_match[/[0-9]{2}\-[0-9]{3}/]');
+            $package_id = (int)$this->input->post('package_id');
 
-            if (!$this->form_validation->run()) {
+            if (!$this->form_validation->run() || !$package_id) {
                 $data['validationErrors'] = validation_errors();
                 $this->session->set_flashdata($data);
                 redirect('shop/cart/order');
             }
-            $packageId = (int)$this->input->post('package_id');
-            $hash = $this->input->post('hash');
-            $session_hash = $this->session->hash;
-            $payment_description = $this->input->post('payment_description');
-            $session_payment_description = $this->session->payment_description;
-            $session_total = $this->session->total;
+            $total_amount_without_package = $this->session->total;
+            $payment_description = $this->session->payment_description;
+            $payment_hash = $this->Cart_model->get_payment_hash($payment_description, $total_amount_without_package);
 
-            if (
-                $packageId && $hash == $session_hash
-                && $payment_description == $session_payment_description
-                && $this->input->post('total') == $session_total
-                && $session_total == $this->cart->format_number($this->cart->total())
-            ) {
-                $name = $this->input->post('name');
-                $surname = $this->input->post('surname');
-                $email = $this->input->post('email');
-                $city = $this->input->post('city');
-                $street = $this->input->post('street');
-                $post_code = $this->input->post('post_code');
-
-                if ($total = $this->Cart_model->order($email, $name, $surname, $city, $street, $post_code, $packageId, $session_total, $payment_description)) {
+            if ($payment_hash === $this->session->payment_hash) {
+                $package = $this->Shop_model->get_package_by_id($package_id);
+                $total = $total_amount_without_package + $package->price;
+                $payment_hash = $this->Cart_model->get_payment_hash($this->session->payment_description, $total);
+                $order_data = [
+                    'user_id' => $this->session->userdata('id') == NULL ? 0 : $this->session->userdata('id'),
+                    'email' => $this->input->post('email'),
+                    'name' => $this->input->post('name'),
+                    'surname' => $this->input->post('surname'),
+                    'city' => $this->input->post('city'),
+                    'street' => $this->input->post('street'),
+                    'post_code' => $this->input->post('post_code'),
+                    'total' => $total,
+                    'payment_hash' => $payment_hash,
+                    'payment_description' => $payment_description,
+                ];
+                if ($this->Cart_model->order($order_data)) {
                     $data['total'] = $total;
                     $data['payment_description'] = $payment_description;
-                    $data['hash'] = $hash;
+                    $data['payment_hash'] = $payment_hash;
                     $this->session->set_flashdata('ok', 'Zamówienie zostało przyjęte!');
                     return $this->load->view('shop/pay', $data);
                 }
@@ -116,10 +113,16 @@ class Cart extends CI_Controller
     public function finish_payment()
     {
         if ($this->input->post()) {
-            $payment_description = $this->input->post('description');
-            $status = $this->input->post('status');
-            $id_sale = $this->input->post('id_sale');
-            $this->Cart_model->finish_payment($payment_description, $status, $id_sale);
+            $payment_data = [
+                'id' => $this->input->post('id_sale'),
+                'payment_description' => $this->input->post('description'),
+                'amount' => $this->input->post('amount'),
+                'status' => $this->input->post('status')
+            ];
+            $updated_orders = $this->Cart_model->finish_payment($payment_data);
+            if ($updated_orders !== 1) {
+                error_log('Orders update after finishing payments error. Updated orders: ' . $updated_orders . ' Payment data: ' . print_r($payment_data));
+            }
             $this->cart->destroy();
             $data['ok'] = "Zamównienie przyjęte.";
             $this->session->set_flashdata($data);
