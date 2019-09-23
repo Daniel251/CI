@@ -95,7 +95,7 @@ class Cart extends CI_Controller
                     'payment_hash' => $payment_hash,
                     'payment_description' => $payment_description,
                 ];
-                if ($this->Cart_model->order($order_data)) {
+                if ($this->Cart_model->order($order_data, $package_id)) {
                     $data['total'] = $total;
                     $data['payment_description'] = $payment_description;
                     $data['payment_hash'] = $payment_hash;

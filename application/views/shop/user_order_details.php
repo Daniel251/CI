@@ -6,7 +6,7 @@
 </div>
 <div class="mb-3 label">
     <h4>
-        Data złożenia zamówienia:  <?php echo $order_details[0]->date; ?>
+        Data złożenia zamówienia:  <?php echo $order_details[0]->date; ?> | Status płatności: <?php echo $payment_status ?>
     </h4>
 </div>
 <table class="table">

@@ -80,7 +80,7 @@ class Cart_model extends CI_Model
         }
     }
 
-    public function order(array $order_data): bool
+    public function order(array $order_data, int $package_id): bool
     {
         try {
             $this->db->insert('orders', $order_data);
@@ -100,7 +100,7 @@ class Cart_model extends CI_Model
 
             $data = [
                 'order_id' => $order_id,
-                'package_id' => $order_data['package_id'],
+                'package_id' => $package_id,
             ];
             $this->db->insert('orderpackage', $data);
 
@@ -141,9 +141,13 @@ class Cart_model extends CI_Model
     {
         $this->db->insert('payments', $payment_data);
 
-        $this->db->where('payment_description', $payment_data['description']);
+        $this->db->where('payment_description', $payment_data['payment_description']);
         $this->db->update('orders', ['payment_id' => $payment_data['id']]);
 
-        return $this->db->affected_rows();
+        if ($payment_data['id']) {
+            return $this->db->affected_rows();
+        }
+
+        return 0;
     }
 }

@@ -86,4 +86,17 @@ class Shop_model extends CI_Model
                AND o.id = $order_id
         ")->result();
     }
+
+    public function get_payment_status(int $order_id)
+    {
+        $status_row = $this->db->query("SELECT p.status FROM orders o INNER JOIN payments p ON o.payment_id = p.id WHERE o.id = $order_id")->first_row();
+
+        if (!$status_row) {
+            return 'Błąd płatności';
+        } elseif ($status_row->status == 'CLEARED') {
+            return 'Płatność zaksięgowana';
+        } elseif ($status_row->status == 'PENDING') {
+            return 'Oczekiwanie na zakończenie płatności';
+        }
+    }
 }

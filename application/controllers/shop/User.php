@@ -272,6 +272,7 @@ class User extends CI_Controller
     public function order_details(int $order_id)
     {
         $data['order_details'] = $this->Shop_model->get_user_order_details($this->session->userdata('id'), $order_id);
+        $data['payment_status'] = $this->Shop_model->get_payment_status($order_id);
         $this->load->view('shop/user_order_details', $data);
         $this->load->view('shop/footer');
     }
